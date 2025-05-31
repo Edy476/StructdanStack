@@ -37,3 +37,13 @@ void Push(ItemType x, Stack *S) {
         ++(S->Count);
     }
 }
+
+// Mengambil elemen dari stack (Pop)
+void Pop(Stack *S, ItemType *x) {
+    if (S->Count == 0)
+        cout << "Stack masih kosong!" << endl;
+    else {
+        --(S->Count);
+        *x = S->Item[S->Count];
+    }
+}
