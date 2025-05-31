@@ -27,3 +27,13 @@ int Empty(Stack *S) {
 int Full(Stack *S) {
     return (S->Count == MAXSTACK);
 }
+
+// Menambahkan elemen ke dalam stack (Push)
+void Push(ItemType x, Stack *S) {
+    if (S->Count == MAXSTACK)
+        cout << "Stack penuh! Data tidak dapat masuk!" << endl;
+    else {
+        S->Item[S->Count] = x;
+        ++(S->Count);
+    }
+}
