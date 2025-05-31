@@ -47,3 +47,30 @@ void Pop(Stack *S, ItemType *x) {
         *x = S->Item[S->Count];
     }
 }
+
+int main() {
+    Stack s;
+    ItemType x;
+
+    InitializeStack(&s);
+
+    // Menambahkan data ke stack
+    Push(10, &s);
+    Push(20, &s);
+    Push(30, &s);
+
+    // Mengeluarkan data dari stack
+    Pop(&s, &x);
+    cout << "Data yang di-pop: " << x << endl;
+
+    Pop(&s, &x);
+    cout << "Data yang di-pop: " << x << endl;
+
+    Pop(&s, &x);
+    cout << "Data yang di-pop: " << x << endl;
+
+    // Pop dari stack kosong
+    Pop(&s, &x);
+
+    return 0;
+}
