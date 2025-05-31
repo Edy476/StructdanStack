@@ -1,29 +1,29 @@
 #include <iostream>
-using namespace std;
 #include <string>
+using namespace std;
 
-int main(){
-    
-    struct mahasiswa
-    {
+int main() {
+    struct mahasiswa {
         string nim;
         string nama;
         string alamat;
         float ipk;
-
     };
-    mahasiswa Edy;
-    Edy.nama = "Edy Sukarma";
-    Edy.nim = "c030324066";
-    Edy.alamat = "Jl. Ahmad Yani. KM 15.200";
-    Edy.ipk = 3.7;
-    
-    
-    cout << "Nama : " <<Edy.nama <<endl;
-    cout << "NIM : " <<Edy.nim << endl;
-    cout << "Alamat : " <<Edy.alamat << endl;
-    cout << "IPK : " <<Edy.ipk << endl;
+
+    mahasiswa edy;
+    mahasiswa* ptr = &edy; // pointer ke struct edy
+
+   
+    ptr->nama = "Edy Sukarma";
+    ptr->nim = "c030324066";
+    ptr->alamat = "Jl. Ahmad Yani KM 15.200";
+    ptr->ipk = 3.9;
+
+    // Menampilkan data
+    cout << "Nama   : " << ptr->nama << "\n";
+    cout << "NIM    : " << ptr->nim << "\n";
+    cout << "Alamat : " << ptr->alamat << "\n";
+    cout << "IPK    : " << ptr->ipk << "\n";
 
     return 0;
-
 }
