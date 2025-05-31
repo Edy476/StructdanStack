@@ -17,3 +17,13 @@ typedef struct {
 void InitializeStack(Stack *S) {
     S->Count = 0;
 }
+
+// Mengecek apakah stack kosong
+int Empty(Stack *S) {
+    return (S->Count == 0);
+}
+
+// Mengecek apakah stack penuh
+int Full(Stack *S) {
+    return (S->Count == MAXSTACK);
+}
