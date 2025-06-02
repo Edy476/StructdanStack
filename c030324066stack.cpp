@@ -5,7 +5,7 @@ using namespace std;
 typedef int ItemType;
 
 // Ukuran maksimum stack
-#define MAXSTACK 100
+#define MAXSTACK 2
 
 // Definisi struktur stack
 typedef struct {
