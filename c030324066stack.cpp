@@ -1,36 +1,37 @@
 #include <iostream>
 using namespace std;
+#include <string>
 
-// Definisi tipe data item pada stack
-typedef int ItemType;
+// Tipe data item pada stack
+typedef string ItemType;  
 
 // Ukuran maksimum stack
-#define MAXSTACK 2
+#define MAXSTACK 5
 
-// Definisi struktur stack
+// Struktur stack berbasis pointer
 typedef struct {
     ItemType Item[MAXSTACK];
     int Count;
 } Stack;
 
-// Inisialisasi stack kosong
+// Inisialisasi stack
 void InitializeStack(Stack *S) {
     S->Count = 0;
 }
 
-// Mengecek apakah stack kosong
+// Cek apakah stack kosong
 int Empty(Stack *S) {
     return (S->Count == 0);
 }
 
-// Mengecek apakah stack penuh
+// Cek apakah stack penuh
 int Full(Stack *S) {
     return (S->Count == MAXSTACK);
 }
 
-// Menambahkan elemen ke dalam stack (Push)
+// Fungsi Push
 void Push(ItemType x, Stack *S) {
-    if (S->Count == MAXSTACK)
+    if (Full(S))
         cout << "Stack penuh! Data tidak dapat masuk!" << endl;
     else {
         S->Item[S->Count] = x;
@@ -38,9 +39,9 @@ void Push(ItemType x, Stack *S) {
     }
 }
 
-// Mengambil elemen dari stack (Pop)
+// Fungsi Pop
 void Pop(Stack *S, ItemType *x) {
-    if (S->Count == 0)
+    if (Empty(S))
         cout << "Stack masih kosong!" << endl;
     else {
         --(S->Count);
@@ -48,29 +49,66 @@ void Pop(Stack *S, ItemType *x) {
     }
 }
 
+// Menampilkan isi stack
+void Display(Stack *S) {
+    if (Empty(S)) {
+        cout << "Data tidak tersedia." << endl;
+    } else {
+        cout << "Data tersimpan:" << endl;
+        for (int i = 0; i < S->Count; i++) {
+            cout << i + 1 << ". " << S->Item[i] << endl;
+        }
+    }
+
+    if (Full(S)) {
+        cout << "Stack Penuh." << endl;
+    }
+
+    cout << endl;
+}
+
 int main() {
     Stack s;
-    ItemType x;
-
     InitializeStack(&s);
 
-    // Menambahkan data ke stack
-    Push(10, &s);
-    Push(20, &s);
-    Push(30, &s);
+    int pil;
+    ItemType data;
 
-    // Mengeluarkan data dari stack
-    Pop(&s, &x);
-    cout << "Data yang di-pop: " << x << endl;
+    do {
+        system("cls"); 
+        Display(&s);
+        cout << "Menu Utama\n1. Push\n2. Pop\n3. Keluar\nPilih: ";
+        cin >> pil;
+        cin.ignore(); // membersihkan newline di buffer
 
-    Pop(&s, &x);
-    cout << "Data yang di-pop: " << x << endl;
-
-    Pop(&s, &x);
-    cout << "Data yang di-pop: " << x << endl;
-
-    // Pop dari stack kosong
-    Pop(&s, &x);
+        switch (pil) {
+            case 1:
+                if (!Full(&s)) {
+                    cout << "Masukkan data: ";
+                    getline(cin, data);
+                    Push(data, &s);
+                } else {
+                    cout << "Stack sudah penuh!\n";
+                    system("pause");
+                }
+                break;
+            case 2:
+                if (!Empty(&s)) {
+                    Pop(&s, &data);
+                    cout << "Data yang di-pop: " << data << endl;
+                } else {
+                    cout << "Stack kosong!\n";
+                }
+                system("pause");
+                break;
+            case 3:
+                cout << "Keluar dari program." << endl;
+                break;
+            default:
+                cout << "Pilihan tidak valid.\n";
+                system("pause");
+        }
+    } while (pil != 3);
 
     return 0;
 }
